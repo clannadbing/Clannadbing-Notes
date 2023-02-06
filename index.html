@@ -1378,7 +1378,11 @@ a.ty-link {
 .cm-s-inner .CodeMirror-linenumber {
     color: #787878;
 }
-
+.container-iframe{
+    height:100px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch; 
+}
  @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}}
 </style><title>Clannadbing Notes</title>
 </head>
@@ -1415,7 +1419,10 @@ a.ty-link {
             <hr />
             <h2 id='donate'><span>Donate</span></h2>
             <p><font color='red'><span>如果本总结对你有帮助，可以请作者喝杯速溶咖啡！！！</span></font></p>
-            <details><summary>Click Here!!!</summary><iframe src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230131/3.svg"  frameborder="0" scrolling="yes" height="400"></iframe></details>
+            <details>
+                <summary>Click Here!!!</summary>
+                <iframe class = 'container-iframe' src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230131/3.svg"  frameborder="0" scrolling="yes" height="400"></iframe>
+            </details>
             <p>&nbsp;</p>
         </div>
     </div>
