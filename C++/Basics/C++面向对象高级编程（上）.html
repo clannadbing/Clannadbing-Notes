@@ -1,0 +1,803 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+</style><title>C++面向对象高级编程（上）</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='c面向对象高级编程上）'><span>C++面向对象高级编程（上）</span></h1><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n0"><a class="md-toc-inner" href="#c面向对象高级编程上）">C++面向对象高级编程（上）</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3"><a class="md-toc-inner" href="#引言">引言</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n14"><a class="md-toc-inner" href="#class-without-pointer-members--------complex类"><strong>Class without pointer member(s) —— complex类</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n15"><a class="md-toc-inner" href="#1-头文件与类的声明">1. 头文件与类的声明</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n19"><a class="md-toc-inner" href="#11-头文件声明-ifndef">1.1 头文件声明-#ifndef</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n29"><a class="md-toc-inner" href="#12-头文件声明-pragmaonce">1.2 头文件声明-#pragmaonce</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n39"><a class="md-toc-inner" href="#13-类的声明">1.3 类的声明</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n41"><a class="md-toc-inner" href="#14-类模板简介">1.4 类模板简介</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n43"><a class="md-toc-inner" href="#2-构造函数">2. 构造函数</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n44"><a class="md-toc-inner" href="#21-inline内联函数">2.1 inline内联函数</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n47"><a class="md-toc-inner" href="#22-访问级别">2.2 访问级别</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n50"><a class="md-toc-inner" href="#23-构造函数">2.3 构造函数</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n54"><a class="md-toc-inner" href="#3-函数重载">3. 函数重载</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n56"><a class="md-toc-inner" href="#函数重载仅与以下参数有关">函数重载仅与以下参数有关</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n64"><a class="md-toc-inner" href="#4-设计模式-singleton">4. 设计模式-Singleton</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n66"><a class="md-toc-inner" href="#"></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n73"><a class="md-toc-inner" href="#5-常量成员函数">5. 常量成员函数</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n79"><a class="md-toc-inner" href="#6-参数传递by-value-或-by-引用">6. 参数传递by value 或 by 引用</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n81"><a class="md-toc-inner" href="#61-为什么我们尽量使用引用传递">6.1 为什么我们尽量使用引用传递：</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n83"><a class="md-toc-inner" href="#62-如何判断我们能否使用引用传递">6.2 如何判断我们能否使用引用传递</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n85"><a class="md-toc-inner" href="#7-返回传递by-value-或-by-引用">7. 返回传递by value 或 by 引用</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n91"><a class="md-toc-inner" href="#8-友元">8. 友元</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n92"><a class="md-toc-inner" href="#81-用法及定义在类中声明为friend的函数可以直接访问这个类的私有成员">8.1 用法及定义：在类中声明为friend的函数，可以直接访问这个类的私有成员。</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n94"><a class="md-toc-inner" href="#82-通过相同class生成的对象这些对象之间默认互为友元">8.2 通过相同class生成的对象，这些对象之间默认互为友元</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n97"><a class="md-toc-inner" href="#9-操作符重载和临时对象">9. 操作符重载和临时对象</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n98"><a class="md-toc-inner" href="#91-成员函数this">9.1 成员函数this</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n102"><a class="md-toc-inner" href="#92-返回传递引用传递详解">9.2 返回传递：引用传递详解</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n105"><a class="md-toc-inner" href="#93-创建临时变量">9.3 创建临时变量</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n107"><a class="md-toc-inner" href="#94-关于操作符的重载">9.4 关于“&lt;&lt;”操作符的重载</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n114"><a class="md-toc-inner" href="#10-complex类的完整实现">10. complex类的完整实现</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n119"><a class="md-toc-inner" href="#class-with-pointer-members-------string类"><strong>Class with pointer member(s) ——string类</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n120"><a class="md-toc-inner" href="#1-big-three-构造拷贝拷贝赋值析构">1. Big Three: 构造拷贝、拷贝赋值、析构</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n121"><a class="md-toc-inner" href="#11-由string引入带指针类的设计">1.1 由String引入带指针类的设计</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n128"><a class="md-toc-inner" href="#12-string类的构造函数和析构函数">1.2 String类的构造函数和析构函数</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n132"><a class="md-toc-inner" href="#13-拷贝构造copy-ctor">1.3 拷贝构造(copy ctor)</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n139"><a class="md-toc-inner" href="#14-拷贝赋值">1.4 拷贝赋值</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n144"><a class="md-toc-inner" href="#15-操作符--重载">1.5 操作符 &lt;&lt; 重载</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n147"><a class="md-toc-inner" href="#2-堆栈和内存管理">2. 堆，栈和内存管理</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n148"><a class="md-toc-inner" href="#21-栈和堆">2.1 栈和堆 </a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n152"><a class="md-toc-inner" href="#22-栈中对象的生命周期">2.2 栈中对象的生命周期</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n158"><a class="md-toc-inner" href="#23-堆中对象的生命周期">2.3 堆中对象的生命周期</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n161"><a class="md-toc-inner" href="#24-分析new函数先分配内存再调用构造函数">2.4 分析new函数(先分配内存，再调用构造函数)</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n163"><a class="md-toc-inner" href="#25-分析delete函数先调用析构函数再释放内存">2.5 分析delete函数(先调用析构函数，再释放内存)</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n166"><a class="md-toc-inner" href="#26-new在内存中的动态分配">2.6 new在内存中的动态分配</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n172"><a class="md-toc-inner" href="#27-array-new必须搭配array-delete">2.7 array new必须搭配array delete</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n175"><a class="md-toc-inner" href="#3-string类的完整实现">3. String类的完整实现</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n180"><a class="md-toc-inner" href="#4-扩展补充static类模板函数模板及其他">4. 扩展补充：static、类模板、函数模板及其他</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n181"><a class="md-toc-inner" href="#41-static静态）介绍">4.1 static（静态）介绍</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n196"><a class="md-toc-inner" href="#42-单例模式">4.2 单例模式</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n201"><a class="md-toc-inner" href="#43-cout">4.3 cout</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n205"><a class="md-toc-inner" href="#44-模板">4.4 模板</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n212"><a class="md-toc-inner" href="#45-namespace">4.5 namespace</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n215"><a class="md-toc-inner" href="#object-oriented面向对象）面对的是多重classes的设计"><strong>Object Oriented（面向对象）：面对的是多重classes的设计</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n216"><a class="md-toc-inner" href="#1-复合委托继承">1. 复合、委托、继承</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n217"><a class="md-toc-inner" href="#11-composition复合">1.1 Composition，复合</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n225"><a class="md-toc-inner" href="#12-delegation委托也叫composition-by-reference">1.2 Delegation，委托，也叫Composition by reference</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n229"><a class="md-toc-inner" href="#13-inheritance继承">1.3 Inheritance，继承</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n236"><a class="md-toc-inner" href="#2-虚函数与多态">2. 虚函数与多态</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n237"><a class="md-toc-inner" href="#21-函数的三种成员函数从虚函数的角度出发">2.1 函数的三种成员函数(从虚函数的角度出发)</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n253"><a class="md-toc-inner" href="#22-继承--虚函数--模板方法模式template-method----多态">2.2 继承 + 虚函数 = 模板方法模式(Template Method) -- 多态</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n262"><a class="md-toc-inner" href="#3-继承--复合的构造和析构执行顺序">3. (继承 + 复合)的构造和析构执行顺序</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n266"><a class="md-toc-inner" href="#4-委托继承observer设计模式">4. 委托+继承(Observer设计模式)</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n273"><a class="md-toc-inner" href="#5-委托相关设计">5. 委托相关设计</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n274"><a class="md-toc-inner" href="#51-组合模式委托--继承">5.1 组合模式：委托 + 继承</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n279"><a class="md-toc-inner" href="#52-原型模式委托--继承">5.2 原型模式：委托 + 继承</a></span></p></div><h3 id='引言'><font color='green'><span>引言</span></font></h3><p><span>在面向对象高级编程(上)中，侯捷老师分别从</span><strong><span>基于对象</span></strong><span>、</span><strong><span>面向对象</span></strong><span>，讲述了C++编程过程中相关的知识点、注意事项以及如何写好规范的代码。</span></p><p><span>1.</span><strong><span>Object Based(基于对象)：</span></strong><span>面对的是单一class的设计</span></p><ul><li><span>Class without pointer member(s) —— complex类</span></li><li><span>Class with pointer member(s) ——string类</span></li></ul><p><span>2.</span><strong><span>Object Oriented（面向对象）：</span></strong><span>面对的是多重classes的设计。classes和classes之间的关系。</span></p><p><span>接下来，将依托这个分类类分别叙述知识点。</span></p><p><span>Object Based(基于对象)：面对的是单一class的设计</span>
+<span>Object Oriented（面向对象）：面对的是多重classes的设计。classes和classes之间的关系。</span></p><h3 id='class-without-pointer-members--------complex类'><font color='green'><strong><span>Class without pointer member(s) —— complex类</span></strong></font></h3><h4 id='1-头文件与类的声明'><span>1. 头文件与类的声明</span></h4><p><span>进行程序编写时，经常需要引用头文件，众所周知，头文件引入的方式就是将代码插入到cpp中，</span></p><p><strong><span>文件间相互引用，难免出现同一头文件引用多次的情况，</span>
+<span>为了避免这种重复，就有了头文件防卫式声明。</span></strong></p><p><span>作用：防止同一个文件被包含多次</span></p><h5 id='11-头文件声明-ifndef'><span>1.1 头文件声明-</span><span>#</span><span>ifndef</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/1.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>特点：</span></p><ul><li><span>跨平台</span></li><li><span>可针对文件也可针对代码片段。</span></li><li><span>编译慢，有宏命名冲突的风险</span></li></ul><h5 id='12-头文件声明-pragmaonce'><span>1.2 头文件声明-#pragmaonce</span></h5><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="cpp"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="cpp"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.33333px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#pragmaonce</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">... ... <span class="cm-comment">// 声明、定义语句</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 68px;"></div><div class="CodeMirror-gutters" style="display: none; height: 68px;"></div></div></div></pre><p><span>特点：</span></p><ul><li><span>不跨平台</span></li><li><span>只能针对文件</span></li><li><span>编译快，无宏命名冲突的风险。</span></li></ul><h5 id='13-类的声明'><span>1.3 类的声明</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/2.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='14-类模板简介'><span>1.4 类模板简介</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/3.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h4 id='2-构造函数'><span>2. 构造函数</span></h4><h5 id='21-inline内联函数'><span>2.1 inline内联函数</span></h5><p><span>在class内部定义的函数，</span><strong><span>自动</span></strong><span>声明为inline，在外部生命的函数在前面加上inline也可以手动声明为inline。不过具体能不能成为inline函数要看编译器。</span>
+<span>inline的优点是相对于普通函数更快，一般来说能声明为inline都声明为inline。</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/4.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='22-访问级别'><span>2.2 访问级别</span></h5><p><span>函数一般放在public，数据一般放在private，如果要访问数据，可以在public写单独的获取数据的函数以访问数据。</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/5.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='23-构造函数'><span>2.3 构造函数</span></h5><p><span>学会使用</span><strong><span>初始化队列</span></strong><span>来初始化一个对象的数据</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/6.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>使用初始化队列初始化和在{}使用赋值语句(如下图)的区别：</span>
+<img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/7.png" referrerpolicy="no-referrer" alt="在这里插入图片描述">
+<span>不一样，前者是在</span><strong><span>初始化</span></strong><span>，第二个是在</span><strong><span>赋值</span></strong><span>，前者更加规范，而且效率更高，也会避免一些错误。比如说有些必须初始化的元素（比如引用），使用赋值可能留下隐患（引用必须在声明时初始化)。</span></p><h4 id='3-函数重载'><span>3. 函数重载</span></h4><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/8.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='函数重载仅与以下参数有关'><span>函数重载仅与以下参数有关</span></h5><p><span>1.函数名称。函数重载需要函数名称相同</span>
+<span>2.函数参数。函数重载需要不同的函数参数列表，列表可以是类型不同，数量不同等</span></p><p><strong><span>同时也需要注意这些问题</span></strong>
+<span>1.如果只有返回值类型不同则不会构成重载</span>
+<span>2.对于每种参数，必须要有优先级区分，不然会造成二义性调用。</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/9.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>函数重载的参数顺序也会构成重载</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/10.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>一个构造函数已经有默认值，可以重载其他的构造函数，但不能重载与它冲突的那一个</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/11.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h4 id='4-设计模式-singleton'><span>4. 设计模式-Singleton</span></h4><p><strong><span>放在private区的构造函数</span></strong></p><h5 ><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/12.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></h5><p><span>private不被外界调用，下面的调用会报错, 那放在private有什么用呢？</span>
+<strong><span>设计模式中有一个Singleton，就把构造函数放在private里面</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/13.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>类的静态成员包括静态数据成员和静态成员函数都必须类内声明在类外赋值或定义</span></strong></p><p><span>Singleton意思为为单体</span>
+<span>里面自己准备了自己</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/14.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>只有通过这个函数才能获取自己</span>
+<span>告诉我们确实有这种写法把构造函数放在private里面。</span></p><h4 id='5-常量成员函数'><span>5. 常量成员函数</span></h4><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/15.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>如果这个函数内部不会改变数据，那么这个函数应当声明为const。比如下面两个函数仅仅是读取放在private区域的值，就声明为const</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/16.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>如果不声明为const，那么遇到下面这种情况，即声明了这个类的一个const对象时，如果调用了非const的函数，那么就会报错，即留下了隐患。</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/17.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h4 id='6-参数传递by-value-或-by-引用'><span>6. 参数传递by value 或 by 引用</span></h4><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/18.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='61-为什么我们尽量使用引用传递'><span>6.1 为什么我们尽量使用引用传递：</span></h5><p><span>如果进行值传递，那么函数会将这个需要传的值本身全部压栈，如果这个值本身很大，那么必然会花费不少时间和空间。</span>
+<span>然而，如果进行引用传递，那么不论这个传递的值本身多大，函数也只会传递一个指针大小的值过去（引用实际上就是使用指针实现的），即使这个值本身很大，它的时间和空间复杂度也没有变化。</span>
+<span>所以我们需要养成习惯，如果可以的话，尽量使用引用传递</span></p><h5 id='62-如何判断我们能否使用引用传递'><span>6.2 如何判断我们能否使用引用传递</span></h5><p><span>因为对引用进行修改会对初始值也造成修改，如果我们不需要对传入值进行修改的话，应该添加const。</span>
+<span>如果确定要对引用传递进行修改，切记它也会对原本的对象进行修改</span></p><h4 id='7-返回传递by-value-或-by-引用'><span>7. 返回传递by value 或 by 引用</span></h4><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/19.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>为什么我们尽量使用引用返回：基本同参数传递。</span></p><p><strong><span>应当注意返回值是不是一个临时声明在函数内部的变量</span></strong></p><p><span>如果返回值是临时创建在函数内部的话，因为它的生命会在函数运行结束之后终止并死亡，所以如果对一个被销毁的对象传引用的话，那么必然会发生错误。</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/20.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h4 id='8-友元'><span>8. 友元</span></h4><h5 id='81-用法及定义在类中声明为friend的函数可以直接访问这个类的私有成员'><span>8.1 用法及定义：在类中声明为friend的函数，可以直接访问这个类的私有成员。</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/21.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='82-通过相同class生成的对象这些对象之间默认互为友元'><span>8.2 通过相同class生成的对象，这些对象之间默认互为友元</span></h5><p><span>如图，c2可以直接访问c1（即直接通过点运算符）的成员，而不是通过函数返回值获取成员</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/22.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h4 id='9-操作符重载和临时对象'><span>9. 操作符重载和临时对象</span></h4><h5 id='91-成员函数this'><span>9.1 成员函数this</span></h5><p><strong><span>定义：所有的成员函数一定带着一个隐藏的函数参数，叫做this。这个this永远指向函数调用者，并且无法被更改，同时也不能显式的写在参数列表当中，仅能直接使用。</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/23.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>如果调用这个函数重载，那么c2将作为参数this，c1将作为参数r</span></p><h5 id='92-返回传递引用传递详解'><span>9.2 返回传递：引用传递详解</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/24.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"><strong><span>1.接收端无需知道返回的是一个引用还是值，不需要做额外修改</span></strong></p><p><strong><span>2.返回引用可以实现连续调用的情况。</span></strong></p><h5 id='93-创建临时变量'><span>9.3 创建临时变量</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/25.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='94-关于操作符的重载'><span>9.4 关于“&lt;&lt;”操作符的重载</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/26.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>&lt;&lt;运算符会将右边的对象作用于左边的对象身上</span></p><p><strong><span>但是这里就引出了一个问题，cout必然是标准库已经写好了的函数，如果我们制定了一个新的类，并且实例出了它的对象，那么cout无法直接输出这个函数的对象，如果我们需要打印这个对象，那么我们必须要自己为它指定一个输出函数</span></strong></p><p><strong><span>操作符有成员函数的写法，也有非成员函数的写法</span>
+<span>对着cout这种特殊的只有用全局的写法，因为对于以前现有的东西像等&lt;&lt;这种现有的符号不要想着写为成员函数的写法</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/27.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>这里不能加const，如果加const，传进来的os不可被改变，</span><strong><span>这里也看不出来我改他啊，其实往os里面丢的时候其实在修改</span></strong><span>，每一次输出都在改变os的状态。</span></p><h4 id='10-complex类的完整实现'><span>10. complex类的完整实现</span></h4><p><strong><span>complex.h</span></strong></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="cpp" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="cpp"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.33333px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#ifndef __MYCOMPLEX__</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#define __MYCOMPLEX__</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">class</span> <span class="cm-def">complex</span>; </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">complex</span><span class="cm-operator">&amp;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">__doapl</span> (<span class="cm-variable">complex</span><span class="cm-operator">*</span> <span class="cm-variable">ths</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">r</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">complex</span><span class="cm-operator">&amp;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">__doami</span> (<span class="cm-variable">complex</span><span class="cm-operator">*</span> <span class="cm-variable">ths</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">r</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">complex</span><span class="cm-operator">&amp;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">__doaml</span> (<span class="cm-variable">complex</span><span class="cm-operator">*</span> <span class="cm-variable">ths</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">r</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">class</span> <span class="cm-def">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span>:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">complex</span> (<span class="cm-variable-3">double</span> <span class="cm-variable">r</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>, <span class="cm-variable-3">double</span> <span class="cm-variable">i</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>): <span class="cm-variable">re</span> (<span class="cm-variable">r</span>), <span class="cm-variable">im</span> (<span class="cm-variable">i</span>) { }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-keyword">operator</span> <span class="cm-operator">+=</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-keyword">operator</span> <span class="cm-operator">-=</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-keyword">operator</span> <span class="cm-operator">*=</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-keyword">operator</span> <span class="cm-operator">/=</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">double</span> <span class="cm-variable">real</span> () <span class="cm-keyword">const</span> { <span class="cm-keyword">return</span> <span class="cm-variable">re</span>; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">double</span> <span class="cm-variable">imag</span> () <span class="cm-keyword">const</span> { <span class="cm-keyword">return</span> <span class="cm-variable">im</span>; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">private</span>:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">double</span> <span class="cm-variable">re</span>, <span class="cm-variable">im</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">friend</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">__doapl</span> (<span class="cm-variable">complex</span> <span class="cm-operator">*</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">friend</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">__doami</span> (<span class="cm-variable">complex</span> <span class="cm-operator">*</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">friend</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">__doaml</span> (<span class="cm-variable">complex</span> <span class="cm-operator">*</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">};</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">__doapl</span> (<span class="cm-variable">complex</span><span class="cm-operator">*</span> <span class="cm-variable">ths</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">r</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">ths</span><span class="cm-operator">-&gt;</span><span class="cm-variable">re</span> <span class="cm-operator">+=</span> <span class="cm-variable">r</span>.<span class="cm-variable">re</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">ths</span><span class="cm-operator">-&gt;</span><span class="cm-variable">im</span> <span class="cm-operator">+=</span> <span class="cm-variable">r</span>.<span class="cm-variable">im</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-operator">*</span><span class="cm-variable">ths</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">complex::operator</span> <span class="cm-operator">+=</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">r</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">__doapl</span> (<span class="cm-keyword">this</span>, <span class="cm-variable">r</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">__doami</span> (<span class="cm-variable">complex</span><span class="cm-operator">*</span> <span class="cm-variable">ths</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">r</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">ths</span><span class="cm-operator">-&gt;</span><span class="cm-variable">re</span> <span class="cm-operator">-=</span> <span class="cm-variable">r</span>.<span class="cm-variable">re</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">ths</span><span class="cm-operator">-&gt;</span><span class="cm-variable">im</span> <span class="cm-operator">-=</span> <span class="cm-variable">r</span>.<span class="cm-variable">im</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-operator">*</span><span class="cm-variable">ths</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">complex::operator</span> <span class="cm-operator">-=</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">r</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">__doami</span> (<span class="cm-keyword">this</span>, <span class="cm-variable">r</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">__doaml</span> (<span class="cm-variable">complex</span><span class="cm-operator">*</span> <span class="cm-variable">ths</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">r</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable-3">double</span> <span class="cm-variable">f</span> <span class="cm-operator">=</span> <span class="cm-variable">ths</span><span class="cm-operator">-&gt;</span><span class="cm-variable">re</span> <span class="cm-operator">*</span> <span class="cm-variable">r</span>.<span class="cm-variable">re</span> <span class="cm-operator">-</span> <span class="cm-variable">ths</span><span class="cm-operator">-&gt;</span><span class="cm-variable">im</span> <span class="cm-operator">*</span> <span class="cm-variable">r</span>.<span class="cm-variable">im</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">ths</span><span class="cm-operator">-&gt;</span><span class="cm-variable">im</span> <span class="cm-operator">=</span> <span class="cm-variable">ths</span><span class="cm-operator">-&gt;</span><span class="cm-variable">re</span> <span class="cm-operator">*</span> <span class="cm-variable">r</span>.<span class="cm-variable">im</span> <span class="cm-operator">+</span> <span class="cm-variable">ths</span><span class="cm-operator">-&gt;</span><span class="cm-variable">im</span> <span class="cm-operator">*</span> <span class="cm-variable">r</span>.<span class="cm-variable">re</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">ths</span><span class="cm-operator">-&gt;</span><span class="cm-variable">re</span> <span class="cm-operator">=</span> <span class="cm-variable">f</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-operator">*</span><span class="cm-variable">ths</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">complex::operator</span> <span class="cm-operator">*=</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">r</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">__doaml</span> (<span class="cm-keyword">this</span>, <span class="cm-variable">r</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable-3">double</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-def">imag</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">x</span>.<span class="cm-variable">imag</span> ();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable-3">double</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-def">real</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">x</span>.<span class="cm-variable">real</span> ();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">+</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">complex</span> (<span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">+</span> <span class="cm-variable">real</span> (<span class="cm-variable">y</span>), <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>) <span class="cm-operator">+</span> <span class="cm-variable">imag</span> (<span class="cm-variable">y</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">+</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>, <span class="cm-variable-3">double</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">complex</span> (<span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">+</span> <span class="cm-variable">y</span>, <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">+</span> (<span class="cm-variable-3">double</span> <span class="cm-variable">x</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">complex</span> (<span class="cm-variable">x</span> <span class="cm-operator">+</span> <span class="cm-variable">real</span> (<span class="cm-variable">y</span>), <span class="cm-variable">imag</span> (<span class="cm-variable">y</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">-</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">complex</span> (<span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">-</span> <span class="cm-variable">real</span> (<span class="cm-variable">y</span>), <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>) <span class="cm-operator">-</span> <span class="cm-variable">imag</span> (<span class="cm-variable">y</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">-</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>, <span class="cm-variable-3">double</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">complex</span> (<span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">-</span> <span class="cm-variable">y</span>, <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">-</span> (<span class="cm-variable-3">double</span> <span class="cm-variable">x</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">complex</span> (<span class="cm-variable">x</span> <span class="cm-operator">-</span> <span class="cm-variable">real</span> (<span class="cm-variable">y</span>), <span class="cm-operator">-</span> <span class="cm-variable">imag</span> (<span class="cm-variable">y</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">*</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">complex</span> (<span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">*</span> <span class="cm-variable">real</span> (<span class="cm-variable">y</span>) <span class="cm-operator">-</span> <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>) <span class="cm-operator">*</span> <span class="cm-variable">imag</span> (<span class="cm-variable">y</span>),</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span> &nbsp; <span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">*</span> <span class="cm-variable">imag</span> (<span class="cm-variable">y</span>) <span class="cm-operator">+</span> <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>) <span class="cm-operator">*</span> <span class="cm-variable">real</span> (<span class="cm-variable">y</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">*</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>, <span class="cm-variable-3">double</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">complex</span> (<span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">*</span> <span class="cm-variable">y</span>, <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>) <span class="cm-operator">*</span> <span class="cm-variable">y</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">*</span> (<span class="cm-variable-3">double</span> <span class="cm-variable">x</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">complex</span> (<span class="cm-variable">x</span> <span class="cm-operator">*</span> <span class="cm-variable">real</span> (<span class="cm-variable">y</span>), <span class="cm-variable">x</span> <span class="cm-operator">*</span> <span class="cm-variable">imag</span> (<span class="cm-variable">y</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">/</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>, <span class="cm-variable-3">double</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">complex</span> (<span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">/</span> <span class="cm-variable">y</span>, <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>) <span class="cm-operator">/</span> <span class="cm-variable">y</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">+</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">x</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">-</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">complex</span> (<span class="cm-operator">-</span><span class="cm-variable">real</span> (<span class="cm-variable">x</span>), <span class="cm-operator">-</span><span class="cm-variable">imag</span> (<span class="cm-variable">x</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable-3">bool</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">==</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">==</span> <span class="cm-variable">real</span> (<span class="cm-variable">y</span>) <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>) <span class="cm-operator">==</span> <span class="cm-variable">imag</span> (<span class="cm-variable">y</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable-3">bool</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">==</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>, <span class="cm-variable-3">double</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">==</span> <span class="cm-variable">y</span> <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>) <span class="cm-operator">==</span> <span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable-3">bool</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">==</span> (<span class="cm-variable-3">double</span> <span class="cm-variable">x</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">x</span> <span class="cm-operator">==</span> <span class="cm-variable">real</span> (<span class="cm-variable">y</span>) <span class="cm-operator">&amp;&amp;</span> <span class="cm-variable">imag</span> (<span class="cm-variable">y</span>) <span class="cm-operator">==</span> <span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable-3">bool</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">!=</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">!=</span> <span class="cm-variable">real</span> (<span class="cm-variable">y</span>) <span class="cm-operator">||</span> <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>) <span class="cm-operator">!=</span> <span class="cm-variable">imag</span> (<span class="cm-variable">y</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable-3">bool</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">!=</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>, <span class="cm-variable-3">double</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">!=</span> <span class="cm-variable">y</span> <span class="cm-operator">||</span> <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>) <span class="cm-operator">!=</span> <span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable-3">bool</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">!=</span> (<span class="cm-variable-3">double</span> <span class="cm-variable">x</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">y</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">x</span> <span class="cm-operator">!=</span> <span class="cm-variable">real</span> (<span class="cm-variable">y</span>) <span class="cm-operator">||</span> <span class="cm-variable">imag</span> (<span class="cm-variable">y</span>) <span class="cm-operator">!=</span> <span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include &lt;cmath&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-def">polar</span> (<span class="cm-variable-3">double</span> <span class="cm-variable">r</span>, <span class="cm-variable-3">double</span> <span class="cm-variable">t</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">complex</span> (<span class="cm-variable">r</span> <span class="cm-operator">*</span> <span class="cm-variable">cos</span> (<span class="cm-variable">t</span>), <span class="cm-variable">r</span> <span class="cm-operator">*</span> <span class="cm-variable">sin</span> (<span class="cm-variable">t</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable">complex</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-def">conj</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>) </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">complex</span> (<span class="cm-variable">real</span> (<span class="cm-variable">x</span>), <span class="cm-operator">-</span><span class="cm-variable">imag</span> (<span class="cm-variable">x</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span> <span class="cm-variable-3">double</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-def">norm</span> (<span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">*</span> <span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">+</span> <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>) <span class="cm-operator">*</span> <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#endif &nbsp; </span><span class="cm-comment">//__MYCOMPLEX__</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 4896px;"></div><div class="CodeMirror-gutters" style="display: none; height: 4896px;"></div></div></div></pre><p><strong><span>complex_text.cpp:</span></strong></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="cpp" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="cpp"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.33333px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include &lt;iostream&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include "complex.h"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">using</span> <span class="cm-keyword">namespace</span> <span class="cm-def">std</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ostream</span><span class="cm-operator">&amp;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">operator</span> <span class="cm-operator">&lt;&lt;</span> (<span class="cm-variable">ostream</span><span class="cm-operator">&amp;</span> <span class="cm-variable">os</span>, <span class="cm-keyword">const</span> <span class="cm-variable">complex</span><span class="cm-operator">&amp;</span> <span class="cm-variable">x</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">os</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-string">'('</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">real</span> (<span class="cm-variable">x</span>) <span class="cm-operator">&lt;&lt;</span> <span class="cm-string">','</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">imag</span> (<span class="cm-variable">x</span>) <span class="cm-operator">&lt;&lt;</span> <span class="cm-string">')'</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">int</span> <span class="cm-def">main</span>()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">complex</span> <span class="cm-variable">c1</span>(<span class="cm-number">2</span>, <span class="cm-number">1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">complex</span> <span class="cm-variable">c2</span>(<span class="cm-number">4</span>, <span class="cm-number">0</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">c1</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">c2</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">c1</span><span class="cm-operator">+</span><span class="cm-variable">c2</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">c1</span><span class="cm-operator">-</span><span class="cm-variable">c2</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">c1</span><span class="cm-operator">*</span><span class="cm-variable">c2</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">c1</span> <span class="cm-operator">/</span> <span class="cm-number">2</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">conj</span>(<span class="cm-variable">c1</span>) <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">norm</span>(<span class="cm-variable">c1</span>) <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">polar</span>(<span class="cm-number">10</span>,<span class="cm-number">4</span>) <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> (<span class="cm-variable">c1</span> <span class="cm-operator">+=</span> <span class="cm-variable">c2</span>) <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> (<span class="cm-variable">c1</span> <span class="cm-operator">==</span> <span class="cm-variable">c2</span>) <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> (<span class="cm-variable">c1</span> <span class="cm-operator">!=</span> <span class="cm-variable">c2</span>) <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-operator">+</span><span class="cm-variable">c2</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-operator">-</span><span class="cm-variable">c2</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> (<span class="cm-variable">c2</span> <span class="cm-operator">-</span> <span class="cm-number">2</span>) <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> (<span class="cm-number">5</span> <span class="cm-operator">+</span> <span class="cm-variable">c2</span>) <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-keyword">return</span> <span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 907px;"></div><div class="CodeMirror-gutters" style="display: none; height: 907px;"></div></div></div></pre><h3 id='class-with-pointer-members-------string类'><font color='green'><strong><span>Class with pointer member(s) ——string类</span></strong></font></h3><h4 id='1-big-three-构造拷贝拷贝赋值析构'><span>1. Big Three: 构造拷贝、拷贝赋值、析构</span></h4><h5 id='11-由string引入带指针类的设计'><span>1.1 由String引入带指针类的设计</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/28.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>因为在设计类的时候，我们无法确定使用者需要多大的内存空间来存储这个字符。所以在设计这个类的时候，设计者选择在类中存放一个指针，然后创建对象时再动态的在内存空间当中分配足够的空间来容纳这个字符串，并且让类中存放的这个指针指向刚刚分配的内存空间的地址。</span></p><p><strong><span>Q：之前的Complex类中是否也存在拷贝构造和拷贝赋值？与String中的有何不同？</span></strong>
+<strong><span>A：Complex类中存在拷贝构造和拷贝赋值。在编译器中存在默认的拷贝构造和拷贝赋值，默认会将需要拷贝的右边逐位拷贝到左边。对于Complex类来说，这个无所谓。但是对于指针类String来说，进行逐位拷贝会将指针指向同一个对象的地址，但是我们并不想让所有的对象都这么做。所以我们需要自己编写拷贝构造和拷贝赋值函数</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/29.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>由此我们设计出了String类的基本结构。</span></strong></p><p><span>public区，从上到下依次是：</span>
+<span>1.构造函数</span>
+<strong><span>2.拷贝构造函数</span>
+<span>3.拷贝赋值函数</span>
+<span>4.析构函数</span></strong>
+<span>5.普通函数，用来读取数据</span>
+<span>private区，存放一个指针，用来动态指向分配的内存地址。</span></p><h5 id='12-string类的构造函数和析构函数'><span>1.2 String类的构造函数和析构函数</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/30.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>构造函数解释：</span></strong>
+<span>已知c风格字符串需要以’\0’结尾</span>
+<span>strlen()函数不会获取后面的’\0’,所以需要额外+1</span>
+<span>strcpy()函数是将我们接收到的cstr放到我们刚刚动态分配的内存空间中去，这样，我们获得了独立的一份字符串拷贝。</span></p><p><strong><span>析构函数解释：</span></strong>
+<span>因为类创造的对象死亡时，会自动清理它的内部所有的成员。对于类似Complex的类来说，不需要额外编写析构函数。但是对于我们在类内部动态创建内存空间的String类来说，它只会清理它内部的指针，而不会清理指针所指向的那一份内存空间。</span>
+<span>所以我们需要额外编写析构函数，目的是是用来释放我们刚刚自己动态分配的内存空间，避免内存泄露。</span></p><h5 id='13-拷贝构造copy-ctor'><span>1.3 拷贝构造(copy ctor)</span></h5><p><span>假设我们都已经初始化了a和b如下：</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/31.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>如果使用默认的拷贝构造(copy ctor)和拷贝赋值(op=)函数，那么不仅a和b会指向同一个对象，对a和b其中的任意一个进行修改都会影响到第二个；同时也发生了内存泄露，因为它原本指向的内存空间也没有得到释放。</span>
+<span>这样的拷贝也叫做浅拷贝。</span><strong><span>默认的赋值函数</span></strong><span>就这样 处理。这样的拷贝也叫做</span><strong><span>浅拷贝</span></strong><span>。</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/32.png" referrerpolicy="no-referrer" alt="在这里插入图片描述">
+<span>那么我们如果不想让a和b指向同一个对象，二是互相独立，我们就需要自己额外编写拷贝构造函数(copy ctor)。这也叫</span><strong><span>深拷贝</span></strong><span>，因为它自己创建了一个新的对象</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/33.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>（这里也应用到了之前提到的性质，就是同一个类初始化出的对象互为友元）</span></p><h5 id='14-拷贝赋值'><span>1.4 拷贝赋值</span></h5><p><span>如果修改一个原本已经存在的值，我们需要做的有三点，</span>
+<span>一是</span><strong><span>删除原来的值</span></strong><span>，清除其原本所指的内存空间</span>
+<span>二是</span><strong><span>创建一个新的大小合适的内存空间</span></strong><span>来容纳新的数值</span>
+<span>三是将新的数值</span><strong><span>拷贝到这个新的内存空间</span></strong><span>中去</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/34.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>Q：这个if的存在意义是什么？（重点，if不可省略）</span></strong>
+<span>A：用来判断这个拷贝赋值的表达式左右两边是不是原本就是同一个值。这个地方不能忽略，不仅仅是效率问题，而是因为如果他们本身就是同一个值的话：假设为s1和s2，目前我们需要执行s1 = s2的操作，如果我们此时我们执行第一步，即</span>
+<strong><span>一是删除原来的值，清除其原本所指的内存空间</span></strong></p><p><span>我们本意是删掉s1，但会同时也把s2也删掉，因为他们本身是同一个值。所以在执行第二步时，由于s2已被删除，我们就无法通过strlen()函数再次获取到s2的长度，将造成错误</span>
+<span>同时这里注意一下，返回的是引用，允许了我们进行连续=操作(s1 = s2 = s3)</span></p><h5 id='15-操作符--重载'><span>1.5 操作符 &lt;&lt; 重载</span></h5><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="C++"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.33333px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ostream</span><span class="cm-operator">&amp;</span> <span class="cm-keyword">operator</span><span class="cm-operator">&lt;&lt;</span>(<span class="cm-variable">ostream</span><span class="cm-operator">&amp;</span> <span class="cm-variable">os</span>, <span class="cm-keyword">const</span> <span class="cm-variable">String</span><span class="cm-operator">&amp;</span> <span class="cm-variable">str</span>){</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">os</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">str</span>.<span class="cm-variable">get_c_str</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">os</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">1234</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 113px;"></div><div class="CodeMirror-gutters" style="display: none; height: 113px;"></div></div></div></pre><p><span>这个重载应当设置为</span><strong><span>全局函数</span></strong><span>，不然&lt;&lt;将出现在右边，不符合我们的习惯</span></p><h4 id='2-堆栈和内存管理'><span>2. 堆，栈和内存管理</span></h4><h5 id='21-栈和堆'><span>2.1 栈和堆 </span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/35.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>栈由编译器自动分配释放，用来存放函数的参数值，局部变量的值等。</span></strong></p><p><strong><span>堆用来存放动态分配的空间，需要由程序员手动分配和释放</span></strong></p><h5 id='22-栈中对象的生命周期'><span>2.2 栈中对象的生命周期</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/36.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>但是，如果在这种对象前面加上static，那么它就不会被清理，而是在整个程序运行结束之后才清理</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/37.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>最后，如果在这种对象声明在外部，那么也相当于一种static对象，作用域是整个程序</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/38.png" referrerpolicy="no-referrer"></p><h5 id='23-堆中对象的生命周期'><span>2.3 堆中对象的生命周期</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/39.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>堆中的对象需要手动进行释放，否则就会造成内存泄露</span></strong></p><h5 id='24-分析new函数先分配内存再调用构造函数'><span>2.4 分析new函数(先分配内存，再调用构造函数)</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/40.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='25-分析delete函数先调用析构函数再释放内存'><span>2.5 分析delete函数(先调用析构函数，再释放内存)</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/41.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>第一步是调用它的析构函数，清除它之前请求动态分配的内存空间。但是此时这个指针本身依然存在</span>
+<span>第二步是释放它自己所占的内存，实际上是使用的C的free函数删除自己(指针)</span></p><h5 id='26-new在内存中的动态分配'><span>2.6 new在内存中的动态分配</span></h5><p><strong><span>对于非数组的new和delete，它的实际大小 = debug大小 + 类型大小，然后向上补到16的倍数(图中pad)</span></strong></p><p><span>64十六进制为0x40这个地方给你了进1所以是0x41，如果把这个地方还给操作系统就变成0x40</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/42.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>对于数组的new和delete，它的实际大小 = debug大小 +（类型大小 X 数组元素个数） ，然后向上补到16的倍数。同时它还存放了一个cookie用来记录当前数组元素的个数</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/43.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='27-array-new必须搭配array-delete'><span>2.7 array new必须搭配array delete</span></h5><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/44.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>首先，不论我们有没有array new搭配array delete，这个对象的本体都会被完整删除。</span>
+<span>如果array new没有搭配array delete，那么析构函数将仅被调用一次，数组中其它的动态分配的内存将不会被回收，造成内存泄露。</span></p><h4 id='3-string类的完整实现'><span>3. String类的完整实现</span></h4><p><strong><span>string.h</span></strong></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="cpp" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="cpp"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.33333px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#pragma once</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include &lt;cstring&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include &lt;iostream&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">class</span> <span class="cm-def">String</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span>:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">String</span>(<span class="cm-keyword">const</span> <span class="cm-variable-3">char*</span> <span class="cm-variable">cstr</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">String</span>(<span class="cm-keyword">const</span> <span class="cm-variable">String</span><span class="cm-operator">&amp;</span> <span class="cm-variable">str</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">String</span><span class="cm-operator">&amp;</span> <span class="cm-keyword">operator</span><span class="cm-operator">=</span>(<span class="cm-keyword">const</span> <span class="cm-variable">String</span><span class="cm-operator">&amp;</span> <span class="cm-variable">str</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">~String</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable-3">char*</span> <span class="cm-variable">get_c_str</span>() <span class="cm-keyword">const</span> { <span class="cm-keyword">return</span> <span class="cm-variable">m_data</span>; }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">private</span>:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable-3">char*</span> <span class="cm-variable">m_data</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">};</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">String::String</span>(<span class="cm-keyword">const</span> <span class="cm-variable-3">char*</span> <span class="cm-variable">cstr</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-keyword">if</span> (<span class="cm-variable">cstr</span>) {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">m_data</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable-3">char</span>[<span class="cm-variable">strlen</span>(<span class="cm-variable">cstr</span>) <span class="cm-operator">+</span> <span class="cm-number">1</span>];</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">strcpy</span>(<span class="cm-variable">m_data</span>, <span class="cm-variable">cstr</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-keyword">else</span> {</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">m_data</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable-3">char</span>[<span class="cm-number">1</span>];</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-operator">*</span><span class="cm-variable">m_data</span> <span class="cm-operator">=</span> <span class="cm-string">'\0'</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span>}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">String::~String</span>()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-keyword">delete</span>[] <span class="cm-variable">m_data</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">String</span><span class="cm-operator">&amp;</span> <span class="cm-variable">String::operator</span><span class="cm-operator">=</span> (<span class="cm-keyword">const</span> <span class="cm-variable">String</span><span class="cm-operator">&amp;</span> <span class="cm-variable">str</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-keyword">if</span> (<span class="cm-keyword">this</span> <span class="cm-operator">==</span> <span class="cm-operator">&amp;</span><span class="cm-variable">str</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-keyword">return</span> <span class="cm-operator">*</span><span class="cm-keyword">this</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-keyword">delete</span>[] <span class="cm-variable">m_data</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">m_data</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable-3">char</span>[<span class="cm-variable">strlen</span>(<span class="cm-variable">str</span>.<span class="cm-variable">m_data</span>) <span class="cm-operator">+</span> <span class="cm-number">1</span>];</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">strcpy</span>(<span class="cm-variable">m_data</span>, <span class="cm-variable">str</span>.<span class="cm-variable">m_data</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-keyword">return</span> <span class="cm-operator">*</span><span class="cm-keyword">this</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">inline</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">String::String</span>(<span class="cm-keyword">const</span> <span class="cm-variable">String</span><span class="cm-operator">&amp;</span> <span class="cm-variable">str</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">m_data</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable-3">char</span>[<span class="cm-variable">strlen</span>(<span class="cm-variable">str</span>.<span class="cm-variable">m_data</span>) <span class="cm-operator">+</span> <span class="cm-number">1</span>];</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">strcpy</span>(<span class="cm-variable">m_data</span>, <span class="cm-variable">str</span>.<span class="cm-variable">m_data</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">std::ostream</span><span class="cm-operator">&amp;</span> <span class="cm-keyword">operator</span> <span class="cm-operator">&lt;&lt;</span> (<span class="cm-variable">std::ostream</span><span class="cm-operator">&amp;</span> <span class="cm-variable">os</span>, <span class="cm-keyword">const</span> <span class="cm-variable">String</span><span class="cm-operator">&amp;</span> <span class="cm-variable">str</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-variable">os</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">str</span>.<span class="cm-variable">get_c_str</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">    </span><span class="cm-keyword">return</span> <span class="cm-variable">os</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 1292px;"></div><div class="CodeMirror-gutters" style="display: none; height: 1292px;"></div></div></div></pre><p><strong><span>string_text.cpp</span></strong></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c++" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.33333px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include "string.h"</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include &lt;iostream&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">using</span> <span class="cm-keyword">namespace</span> <span class="cm-def">std</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">int</span> <span class="cm-def">main</span>()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">String</span> <span class="cm-variable">s1</span>(<span class="cm-string">"hello"</span>); </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">String</span> <span class="cm-variable">s2</span>(<span class="cm-string">"world"</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">String</span> <span class="cm-variable">s3</span>(<span class="cm-variable">s2</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">s3</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">s3</span> <span class="cm-operator">=</span> <span class="cm-variable">s1</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">s3</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>; &nbsp; &nbsp; </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">s2</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>; &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">cout</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">s1</span> <span class="cm-operator">&lt;&lt;</span> <span class="cm-variable">endl</span>; &nbsp; &nbsp; &nbsp;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 408px;"></div><div class="CodeMirror-gutters" style="display: none; height: 408px;"></div></div></div></pre><h4 id='4-扩展补充static类模板函数模板及其他'><span>4. 扩展补充：static、类模板、函数模板及其他</span></h4><h5 id='41-static静态）介绍'><span>4.1 static（静态）介绍</span></h5><p><span>在类中的数据或者函数前面加上static，就变成了一个静态变量/函数。</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/45.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>那些没有static的成员</span></strong></p><p><span>对于数据：每创建一个类的对象，它就会在内存中额外开辟一份空间</span>
+<span>对于函数：存在一个隐藏的this指针，用来访问这个函数的调用者</span></p><p><strong><span>声明为static的成员</span></strong></p><p><span>对于数据：无论创建多少个类的对象，它始终只在内存中存在一份，所有对象共享</span>
+<span>对于函数：将不再存在this指针，通常</span><strong><span>用来处理静态的数据</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/46.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><ul><li><strong><span>1.静态成员变量类内声明，类外初始化/静态成员函数可以在类内定义,也可以在类外定义</span></strong></li><li><strong><span>2.静态成员函数只能访问静态成员变量</span></strong></li><li><span>3.通过class名调用或者通过对象来调用</span></li></ul><h5 id='42-单例模式'><span>4.2 单例模式</span></h5><p><span>在private里面放一个 自己的静态A ，在没有创建A的对象的时候，他已经在一个了，我不想让外界创建A，把他的构造函数放在private里面，有任何人能创建它了，他只有一个自己A，外界如何取得它的，通过静态函数：这个函数就是把刚刚他的自己return回去，所以getInstance是外界的唯一接口。但是这个写法不是最完美的。</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/47.png" referrerpolicy="no-referrer" alt="image-20230418094304587"></p><p><span>把静态的自己放在函数里，当有用户调用到他(getInstance)他才会创建，离开这个函数后，A还在，如果没有任何人使用这个单例，这个单例就不存在</span>
+<strong><span>如果有人用了这个单例也就永远只有这一份。</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/48.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='43-cout'><span>4.3 cout</span></h5><p><span>为什么cout可以接受这么多种参数</span></p><p><span>在STL中，cout继承自ostream，在ostream中对&lt;&lt;操作符进行了很多的重载</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/49.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='44-模板'><span>4.4 模板</span></h5><p><strong><span>类模板class template</span></strong></p><p><span>为了不让我们因为仅仅因为类中元素的数据类型不同而不得不重复声明类，C++提供了类模板，在声明时可以根据传入参数类型自动改变</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/50.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>函数模板function template</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/51.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>当我们使用自定义的类(这里是Stone)时，由于模板在调用时是根据传入参数类型而改变的，所以会自动在Stone类中寻找有关操作符&lt;的重载，这个过程也叫做</span><strong><span>引数推导</span></strong><span>。如果我们在Stone类中没有重载&lt;操作符，那么会报错</span></p><h5 id='45-namespace'><span>4.5 namespace</span></h5><p><span>namespace是一块有名字的逻辑区域，其内部有变量和函数等，形式如下。</span>
+<span>namespce可以有以下三种用法</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/52.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h3 id='object-oriented面向对象）面对的是多重classes的设计'><font color='green'><strong><span>Object Oriented（面向对象）：面对的是多重classes的设计</span></strong></font></h3><h4 id='1-复合委托继承'><span>1. 复合、委托、继承</span></h4><h5 id='11-composition复合'><span>1.1 Composition，复合</span></h5><p><span>在这里表现为类queue中，有其他类(这里是deque)的对象，使得类queue可以使用deque已经完成的函数，避免重复造轮子。</span><strong><span>这里的adapter是指一种设计模式，即适配器模式</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/53.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>复合操作可以嵌套</span></strong></p><p><span>从内存角度来看，在类queue中有一个deque对象，deque中有若干Itr对象。层层分解之后可以知道内存中所占用的大小</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/54.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>复合操作的构造和析构</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/55.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='12-delegation委托也叫composition-by-reference'><span>1.2 Delegation，委托，也叫Composition by reference</span></h5><p><span>类似于上面的复合，但是从类A中含有类B的对象变成了类A中含有指向类B对象的一个指针</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/56.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>Delegation和Composition的区别</span></strong>
+<span>1.由于是指针，他们的生命周期不再同步。一个在栈内存，使用完就自动销毁，一个在堆内存，需要程序员手动分配和释放</span>
+<span>2.Delegation优点是可以实现如图所示pimpl(pointer to implementation)分离，它的对外接口(这里是类String)和内部实现类(这里是StringRep)，也就是以后我们可以在保持不修改对外接口的同时对内部实现进行修改，不会影响客户，也称为编译防火墙</span></p><h5 id='13-inheritance继承'><span>1.3 Inheritance，继承</span></h5><p><span>如图所示，</span><code>_List_node</code><span>继承了</span><code>_List_node_base</code></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/57.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>子类继承了父类的哪些成员</span></strong></p><p><span>子类包含了父类中的数据，比如_List_node_base中的两个指针，体现在子类不仅需要为自己的成员创建内存空间，也要为从父类继承来的成员创建空间</span>
+<span>对于父类中的函数，实际上继承的是函数的</span><strong><span>调用权</span></strong></p><p><strong><span>继承中子类和父类的构造和析构</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/58.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h4 id='2-虚函数与多态'><span>2. 虚函数与多态</span></h4><h5 id='21-函数的三种成员函数从虚函数的角度出发'><span>2.1 函数的三种成员函数(从虚函数的角度出发)</span></h5><figure><table><thead><tr><th><span>名称</span></th><th><span>描述</span></th></tr></thead><tbody><tr><td><span>非虚函数</span></td><td><span>不希望子类对其进行覆写</span></td></tr><tr><td><span>虚函数</span></td><td><span>自己有一个已经存在的定义作为默认定义，但是允许子类对其进行覆写(override)</span></td></tr><tr><td><span>纯虚函数</span></td><td><span>不存在默认定义，继承它的子类必须对其进行覆写(override)</span></td></tr></tbody></table></figure><p><span>比如对一个形状类进行划分</span>
+<span>1.它有一个固定的ID，这个应该不变，所以为非虚函数</span>
+<span>2.它有一个默认的打印报错信息的函数，但是对于不同的形状而言，可以有多种不同的报错形式，所以为虚函数</span>
+<span>3.它有一个绘画函数，对于一个叫做“形状”的形状，我们不知道怎么画它，当且仅当它的子类比如正方形，长方形对其进行实例化之后，我们才知道自己需要画一个什么形状的图形。所以它应该是一个纯虚函数</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/59.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='22-继承--虚函数--模板方法模式template-method----多态'><span>2.2 继承 + 虚函数 = 模板方法模式(Template Method) -- 多态</span></h5><p><span>如果我们需要实现一个如下场景：</span>
+<span>1.点击文件夹，在文件夹中找到你想到打开的文件，点击这个文件(OnFileOpen)</span>
+<span>2.读取文件内容</span>
+<span>对于动作1，无论你打开什么文件，操作都是一样的，都需要找到它的位置然后点开，区别在于怎么读取这个文件的内容，不同格式的文件，它的读取方式是不一样的。(Serialize)然后这两个动作应该是连贯的，所以我们把Serialize函数也放到了OnFileOpen函数里面去</span>
+<span>在这里我们使用子类CMyDoc继承含有一个非虚方法(OnFileOpen)和一个虚方法(Serialize)的CDocument父类，其中子类需要对父类的Serialize函数进行覆写。</span>
+<span>然后实例化一个子类的对象，它的执行过程就是下图。当它遇到OnFileOpen中的虚函数Serialize时，会自己去查找虚函数的实现方法。即提前写好已经固定了的函数，然后让子类去定义哪些暂时无法确定的函数。</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/60.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/61.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><span>父类CDocument的serialize是抽象的</span>
+<span>需要子类以后把他实体化</span></p><p><span>CMyDoc继承了CDocument类，它里面有一个seralize我暂时不想处理，希望让子类去处理它。</span></p><p><span>当子类调用OnFileOpen的时候会回到父类去调用父类的函数OnFileOpen，因为父类里面有seralize</span></p><p><span>到这里时，会运行子类里面写的serialize也就是后来让子类去完成的函数。</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/62.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h4 id='3-继承--复合的构造和析构执行顺序'><span>3. (继承 + 复合)的构造和析构执行顺序</span></h4><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/63.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>对于上面的构造顺序，是父类-&gt;复合类-&gt;子类，析构函数是子类-&gt;复合类-&gt;父类</span></strong></p><p><strong><span>对于下面的构造顺序，是复合类-&gt;父类-&gt;子类，析构函数是子类-&gt;父类-&gt;复合类</span></strong></p><h4 id='4-委托继承observer设计模式'><span>4. 委托+继承(Observer设计模式)</span></h4><p><span>在编写UI时，可能会出现这种情况：用户对一个UI界面开了多个窗口，这些窗口可能显示同一种内容，但是它的表现形式不同，但同时程序员必须让这些内容中的数据保持一致。这就用到了观察者模式</span>
+<span>在观察者模式当中，Observer就是去观察这个Subject的窗口，Subject可以拥有很多个Observer，表现在Subject中含有一个</span><code>vector&lt;Observer*&gt;</code><span> 。</span>
+<span>同时Observer含有一个虚方法供子类进行派生，它的子类同样是Observer，可以放到</span><code>vector&lt;Observer&gt;</code><span>中。这样使得Observer可以有多种形式来观察同一个Subject。</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/64.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><strong><span>在Subject中应当有这些部分：</span></strong></p><p><span>1.注册函数，用来添加观察者</span>
+<span>2.通知函数，用于当更新了Subject时，对它所有的观察者中进行更新</span>
+<span>3.删除函数，用于删除观察者(本例中省略了)</span>
+<span>4.其它函数，用于处理Subject中的私有数据等等</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/65.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/66.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h4 id='5-委托相关设计'><span>5. 委托相关设计</span></h4><h5 id='51-组合模式委托--继承'><span>5.1 组合模式：委托 + 继承</span></h5><p><span>在日常使用过程中，我们会使用到“目录”这种东西，它的特点就是目录中可以创建目录，目录也可以进行合并等等。总结一下就是用户可以使用多个简单的组件以形成较大的组件，而这些组件还可能进一步组合成更大的。它重要的特性是能够让用户一致地对待单个对象和组合对象。在这张图中，可以大致分为一下三种</span>
+<strong><span>Primitive，代表为这个目录下的文件</span></strong></p><p><strong><span>Composite，是文件容器，可以容纳很多文件</span></strong></p><p><strong><span>Component，是这个目录本身，容纳文件以及文件容器</span></strong></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/67.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><h5 id='52-原型模式委托--继承'><span>5.2 原型模式：委托 + 继承</span></h5><p><span>意图：用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。</span>
+<span>主要解决：在运行期建立和删除原型。</span>
+<span>优点： 1、性能提高。 2、逃避构造函数的约束</span></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/68.png" referrerpolicy="no-referrer" alt="在这里插入图片描述"></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/69.png" referrerpolicy="no-referrer" alt="image-20230418105840021"></p><p><img src="https://cdn.jsdelivr.net/gh/clannadbing/Image-Hosting@main/20230418/70.png" referrerpolicy="no-referrer" alt="image-20230418105901871"></p><p><strong><span>子类LastSatIamge</span></strong>
+<span>数据: LSAT:LastSatIamge</span>
+<span>它本身有一个静态对象LSAT(注：在下面添加一条实线的意思是这个成员为静态成员)</span>
+<span>函数:</span></p><p><span>-LastSatIamge()</span>
+<span>一个私有的构造函数，在创建时会将自己添加到原形中去</span>
+<span>#LastSatIamge()</span>
+<span>一个被子类继承的构造函数，直接在内存中分配一个空间用来创建新的副本。注意这里的参数其实是没用的，只是为了构成一个函数重载方便调用而已。</span>
+<span>clone():Image*</span>
+<span>克隆函数，调用上面的构造函数，同时返回构造函数生成的新对象</span></p><p><strong><span>对于父类Image</span></strong>
+<span>数据:</span>
+<span>prototypes[10]:Image*</span>
+<span>用来保存原型，注意每种原形不论生成了几次，只会在这里面保存一个原型</span>
+<span>函数:</span>
+<span>1.clone():Image*</span>
+<span>是一个纯虚方法，必须要子类对其进行实现，clone在子类中的作用是用来分配一个内存空间容纳子类的对象</span>
+<span>2.findAndClone(i):Image*</span>
+<span>在Image已经保存的原型里面找到我们需要创建的原型，调用这个原型的构造函数，返回生成的对象</span>
+<span>3.addPrototype(p:Image*)</span>
+<span>在子类中，要求返回他们的原型用来保存到Image的原型库当中去</span></p></div></div>
+</body>
+</html>
