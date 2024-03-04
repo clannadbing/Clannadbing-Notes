@@ -1,0 +1,679 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+</style><title>2-docker模块</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='center-2-docker模块'><center><span> 2-docker模块</span></h1><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n0"><a class="md-toc-inner" href="#center-2-docker模块"> 2-docker模块</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n3"><a class="md-toc-inner" href="#一docker与虚拟机">一、<strong>docker与虚拟机</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n4"><a class="md-toc-inner" href="#区别"><strong>区别</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n18"><a class="md-toc-inner" href="#docker的优势"><strong>docker的优势</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n28"><a class="md-toc-inner" href="#二docker基本组成">二、<strong>docker基本组成</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n32"><a class="md-toc-inner" href="#三docker运行流程">三、<strong>docker运行流程</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n34"><a class="md-toc-inner" href="#四docker的常用命令">四、<strong>Docker的常用命令</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n35"><a class="md-toc-inner" href="#帮助命令"><strong>帮助命令</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n37"><a class="md-toc-inner" href="#镜像命令"><strong>镜像命令</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n38"><a class="md-toc-inner" href="#docker-images">docker images</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n40"><a class="md-toc-inner" href="#docker-search">docker search</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n42"><a class="md-toc-inner" href="#docker-pull">docker pull</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n44"><a class="md-toc-inner" href="#docker-rmi">docker rmi </a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n46"><a class="md-toc-inner" href="#docker-tag">docker tag </a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n49"><a class="md-toc-inner" href="#容器命令"><strong>容器命令</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n50"><a class="md-toc-inner" href="#docker-run-新建容器并启动">docker run 新建容器并启动</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n53"><a class="md-toc-inner" href="#docker-ps-查看容器">docker ps 查看容器</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n55"><a class="md-toc-inner" href="#docker-rm-删除容器">docker rm 删除容器</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n60"><a class="md-toc-inner" href="#docker-exec-进入容器">docker exec 进入容器</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n65"><a class="md-toc-inner" href="#退出容器">退出容器</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n68"><a class="md-toc-inner" href="#小结">小结</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n72"><a class="md-toc-inner" href="#五docker镜像讲解">五、<strong>Docker镜像讲解</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n73"><a class="md-toc-inner" href="#镜像是什么"><strong>镜像是什么</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n75"><a class="md-toc-inner" href="#docker镜像加载原理"><strong>Docker镜像加载原理</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n83"><a class="md-toc-inner" href="#分层理解"><strong>分层理解</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n90"><a class="md-toc-inner" href="#六容器数据卷">六、<strong>容器数据卷</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n91"><a class="md-toc-inner" href="#什么是容器数据卷"><strong>什么是容器数据卷</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n101"><a class="md-toc-inner" href="#使用本地目录挂载">使用本地目录挂载</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n110"><a class="md-toc-inner" href="#七初始dockerfile">七、<strong>初始Dockerfile</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n113"><a class="md-toc-inner" href="#八dockerfile">八、<strong>DockerFile</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n114"><a class="md-toc-inner" href="#dockerfile介绍"><strong>DockerFile介绍</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n117"><a class="md-toc-inner" href="#dockerfile构建过程"><strong>DockerFile构建过程</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n120"><a class="md-toc-inner" href="#dockerfile的指令"><strong>DockerFile的指令</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n123"><a class="md-toc-inner" href="#九依赖库安装">九、<strong>依赖库安装</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n124"><a class="md-toc-inner" href="#usrlocal目录"><strong>/usr/local目录</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n132"><a class="md-toc-inner" href="#abseil"><strong>abseil</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n134"><a class="md-toc-inner" href="#安装介绍-1"><strong>安装介绍</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n136"><a class="md-toc-inner" href="#install-1"><strong>install</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n141"><a class="md-toc-inner" href="#cmake"><strong>cmake</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n143"><a class="md-toc-inner" href="#官方文档"><strong>官方文档</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n145"><a class="md-toc-inner" href="#install-2"><strong>install</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n147"><a class="md-toc-inner" href="#protobuf"><strong>protobuf</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n149"><a class="md-toc-inner" href="#安装介绍-2"><strong>安装介绍</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n152"><a class="md-toc-inner" href="#install-3"><strong>install</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n154"><a class="md-toc-inner" href="#grpc"><strong>grpc</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n156"><a class="md-toc-inner" href="#安装介绍-3"><strong>安装介绍</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n158"><a class="md-toc-inner" href="#install-4"><strong>install</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n160"><a class="md-toc-inner" href="#qt"><strong>qt</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n161"><a class="md-toc-inner" href="#install-5"><strong>install</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n163"><a class="md-toc-inner" href="#cuteci下载"><strong>cuteci下载</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n164"><a class="md-toc-inner" href="#简介"><strong>简介</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n167"><a class="md-toc-inner" href="#ldconfig"><strong>ldconfig</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n170"><a class="md-toc-inner" href="#十docker--file编写">十、<strong>docker  file编写</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n171"><a class="md-toc-inner" href="#debianfrontend"><strong>DEBIAN_FRONTEND</strong></a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n173"><a class="md-toc-inner" href="#面试常问shellawkgrepsed">面试常问shell：awk，grep，sed</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n174"><a class="md-toc-inner" href="#十一脚本scripts">十一、<strong>脚本scripts</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n175"><a class="md-toc-inner" href="#xhost"><strong>xhost</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n180"><a class="md-toc-inner" href="#示列"><strong>示列</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n183"><a class="md-toc-inner" href="#display"><strong>DISPLAY</strong></a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n188"><a class="md-toc-inner" href="#十二docker的等价比喻">十二、<strong>docker的等价比喻</strong></a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n194"><a class="md-toc-inner" href="#others">Others:</a></span></p></div><h3 id='一docker与虚拟机'><span>一、</span><strong><span>docker与虚拟机</span></strong></h3><h4 id='区别'><strong><span>区别</span></strong></h4><ul><li><span>虚拟机：虚拟机是通过Hypervisor(虚拟机管理系统，常见的有VMWare workstation、VirtualBox)，虚拟出网卡、cpu、内存等虚拟硬件，再在其上建立虚拟机，每个虚拟机是个独立的操作系统，拥有自己的系统内核。</span></li><li><span>容器：容器是利用namespace将文件系统、进程、网络、设备等资源进行隔离，利用cgroup对权限、cpu资源进行限制，最终让容器之间互不影响，容器无法影响宿主机。</span></li></ul><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=OGRkNjc1YzUyMDFjZDJkOTRiNjgwMDVkOTEwYjgyZmFfcU9LM1dzcE5ySFA1U1BLNHlTd1NKMkF1Y3UwdUVObUFfVG9rZW46Skc5aGJSVGNkb3oyRHB4UXFFamNhSmt2bmxlXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=M2Q4ZDE3OGUwNjhmMDMyZjMzMGNhY2ZjNDQwMTJkMjFfUlo5Y1J4cHI3UEljUFhWSEEzTnFUS2ROaWpMWjhqZGpfVG9rZW46Qm40emJlNW5Tb25lTVh4QmVUYWMzYnhPbnZmXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><strong><span>namespace命名空间技术：</span></strong></p><p><span>是一种将全局系统资源划分为独立单元的资源隔离方法，对文件系统、进程、网络、设备等资源进行隔离，使得在不同命名空间中运行的进程看到的资源是不同的，彼此之间相互隔离，容器内的进程认为它们运行在独立的环境中，而不会看到主机上其他容器的影响。</span></p><p><strong><span>cgroup控制组技术：</span></strong></p><p><span>是一种用于限制和隔离一个或一组进程对系统资源使用的机制，将一组进程组织在一个控制组中，为这个控制组分配特定的资源限制与优先级，包括 CPU资源、内存、网络等</span></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=NWQ1MzBmNWE2MjI4MzVlM2E0NjQyYzdmMmFlNzU0NDFfUklGc01SYTRxcTBKZUh6R2k4R25MU2M0REY0TEJub2FfVG9rZW46QnFxVGI5RkI5b29kREp4aGl2ZWN2RUoybnhlXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=ODlhZmI3OGZiZmU1Njg0NDE3NmZmM2E4ZDZiNWI0MTdfZ2ZZTmk5cVllNXJtbEV2TjluMVV6Szk2dkVuS0lnTDVfVG9rZW46SnNKVGI4eXZpb0dBVTR4SkQ0NGM2V2tIbnloXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h4 id='docker的优势'><strong><span>docker的优势</span></strong></h4><ol start='' ><li><span>运行在容器上的docker的程序，直接使用的都是宿主机的硬件资源，因此在cpu、内存、利用率上，Docker将会在效率上具有更大的优势</span></li><li><span>Docker直接利用宿主机的系统内核，避免了虚拟机启动时所需要的系统引导时间和操作系统运行的资源消耗，利用Docker能够在几秒钟之内启动大量的容器，是虚拟机无法办到的。快速启动低资源消耗的优点，使Docker在弹性云平台自动运维系统方面具有很好的应用场景。</span></li><li><span>容器的启动时间是秒级的，大量节约开发、测试、部署的时间。还有一个非常关键的点，就是Docker能够高效地部署和扩容，Docker容器几乎可以在任意平台上运行，包括虚拟机、物理机、公有云、私有云、个人电脑、服务器等，这种兼容性，可以让用户把一个应用程序从一个平台直接迁移到另外一个平台。</span></li><li><span>但是，虚拟机的安全性比容器好一些，docker与宿主机共享内核、文件系统等资源，更有可能对其他容器、宿主机造成影响。</span></li></ol><h3 id='二docker基本组成'><span>二、</span><strong><span>docker基本组成</span></strong></h3><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MGViZWM1M2M5NzcxMTRlNTQ1OGZjMjg2MzcwYmE4NzVfWFI3OThwcXJFQlZTd0tiUmc4M0lFTkFwdGViNHhSS2NfVG9rZW46QXI4T2JGYzhOb2lKQTV4QmkwSWNzczZ6bnd4XzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MTk1MzcxYTI0NWJhMDJlNmJlZWQyZDAyYzFmMWEyZjFfbnVWelJycWxDOUpNcHVQQmQzTVNEQmRRbWlHZTRYWTFfVG9rZW46TllRSWI2RXRHb0ZCRk54TkxnV2NWNmh5bnloXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MmFkNWM3ZTUxMWU3OGExMmQ5MjIwZjA5NzU2NzcxOTNfaENsd3Fvc3ZYZHpsemE3T1ZGbDI3ZlFaTDN2R2FGNVFfVG9rZW46UnBuMWJsTXdFb1E0aDF4elpyNmNaejRPblZoXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h3 id='三docker运行流程'><span>三、</span><strong><span>docker运行流程</span></strong></h3><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=Nzg4ZGRmOTkwOTExY2Y2NDVmYTAwNjE5ZWI5NjIwM2VfallCNFFpRXpnTEhlR0dqR21DYm5DazRFVEhGRjlycHhfVG9rZW46SHJnZmJGOUgwb2FYYzR4dGZFQmNld2ZrbnNOXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h3 id='四docker的常用命令'><span>四、</span><strong><span>Docker的常用命令</span></strong></h3><h4 id='帮助命令'><strong><span>帮助命令</span></strong></h4><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MzBjYThhY2M3OWVjZGRiMGI0Y2I1NTg0YmU3OTFjNzFfdUVOMFpQMnlGZEdNM2tTNDBCOFRyTFJrWmU4dmFwcGFfVG9rZW46WU9QWWJ6OGlHb01VOWN4V0FCOGNJY0o2blZkXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h4 id='镜像命令'><strong><span>镜像命令</span></strong></h4><h5 id='docker-images'><span>docker images</span></h5><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=OTQ3ODkxYTBkNjNmY2E2NDYyNDIxNjliYWQ5MWFkYzFfcFhwU3RDcDVJWERuRGFZVmlZb0ZsYjJHR3ZDeldRc09fVG9rZW46SnAydWJzWkFab05DSmp4N3NGWmNJaEJlbkhlXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h5 id='docker-search'><span>docker search</span></h5><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=YzZmNDFhYjJmZmMyZjE4MjBlNjg5NzAzYTA0MTRjMjhfR2dBQ1BxdmFaY2JvR0x2RkZWMlo2eDdMeTF2SzFNZ3NfVG9rZW46REFSZGJYSFdDbzhLVHF4RUFNVmNsVE9ybnFnXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h5 id='docker-pull'><span>docker pull</span></h5><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MTkwMzk3ODI1ZGEyOWIzOTNjNDBjNjRlYmE1MzlhNTBfTE1LbmFYRDJiUU9iSnlCaklQTFZzRU5zYWV6aUxLbHlfVG9rZW46RmMyU2I0SkE5b0MxMkZ4TnZ6WmM5ZE5Hbk5nXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h5 id='docker-rmi'><span>docker rmi </span></h5><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=NjQ2Yjg3MzI4MzEyNTJmZWU0OTYxMmVjYjgzZjJmZGZfMWxHOGFiU0g1NjNtQzl2cmtjb0UzY1R4a3hNZzVEdnpfVG9rZW46UnE2c2JZbXhjb0ZiRmp4RUVMU2NZb1lrbjgxXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h5 id='docker-tag'><span>docker tag </span></h5><p><span>为镜像创建新的标签。</span></p><p><span>docker tag 镜像id   命名容器</span></p><h4 id='容器命令'><strong><span>容器命令</span></strong></h4><h5 id='docker-run-新建容器并启动'><span>docker run 新建容器并启动</span></h5><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=NjRmNTlhM2M1NTgyOTM2ZTU0ODM3NzJjMTY0YzU4MjFfNmxIRGlwWWFGZ01XbHJUaUtKRTlGaUR2RGl0Rm11RG5fVG9rZW46S1JUbGIzMWkxb2dPelR4WVA3dWNxaTNtbnNoXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWYwNTEzNmEyMWRiMTdjOGMyNWM0OTgyZmJlNTBlZmJfYVJ0Y2haRTRZSTk5enZjbVpSbWxURmhuUWpSWlMzUjlfVG9rZW46SjNWYWJQbURTbzBCekV4cWR5TmNPU3Rnbkl2XzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h5 id='docker-ps-查看容器'><span>docker ps 查看容器</span></h5><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MGUyMzNmY2JhYzRjYjYzMzg5MDc4YjkzNDljZGRhYTNfQWh3Q3llaHZDMVhFTjFmd083SDQ0eUNPVVBaQ3RkazVfVG9rZW46QkhnU2I0aWt1b0FnY014cHF6M2NuVWFBbjFiXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h5 id='docker-rm-删除容器'><span>docker rm 删除容器</span></h5><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=NzNiOWMwZTIzMmI2M2EyZmQ1MTNhMDMyZTgzNTg2Y2Ffck5RZExFQnVSUjRDQlBmOXdQdXl4dVZSdnE3RThmU0JfVG9rZW46TDBDYWJhNjRybzBHRXh4eE5DOGM5SjBBbmRpXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=OGQ2MTA0NjgxZDU3YWEzZWQ1ZGI2YTBmYWIwNDhhMDdfeTgxWThwOVFoc1lxYzdmZGNvcEZMeXAwRm5ZNXh4UUFfVG9rZW46SUR4eWJCZW12b2xGSjR4dWlSemNXbWk3blpjXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MDZiMmQ5Zjg1NDE1ZDhhYTE5YmVkNjAxZDFjZGJiMDJfQU9iUE82dTlUaEdzUDNYaExIUHd1bU1rbEx2YVVPYUhfVG9rZW46T1Q5M2J1ZkZWbzcwTVF4UDNlemNsU2hEbkViXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=NTE3MDU5YzI0OTg0NGQ3ZWQ3NmE4NjcyMTMzMjRkMDFfYzV5U2F1c3d4NUdGU2pTS3FIejA2cmlvMFFPUzJ6YjNfVG9rZW46VHJubmJ3M290b0FGYzJ4MGxxOWM2U0ozbmJ6XzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h5 id='docker-exec-进入容器'><span>docker exec 进入容器</span></h5><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmU2NzVlZWE4YTZhNjc5MmUzNzRkZjY2NmQ2Y2JlOWFfRjFJS0ZpS2RqTllFaW44Zk04NkxDOGpvUVVYVzFZQ1dfVG9rZW46VExsTWJKbVNIb3hIMzd4Z3VoTmM4cWVwblZkXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MTA2MWNhZDU1ZWRmOWZkYTcwNmRhYTQ0ZTkwNzZkMDZfeWNicW9TSzV3NWIzQ0xCRUpRU3hJakxmNjBmZDRtUkxfVG9rZW46RUdFU2J1WmhVb0l5QXN4TUxrOGNGYXFRbmdnXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=OWRlMTQ3MjY2MDFiYjc3YWMyZDg0YjZhOGJlYzNiMDBfdlIwYTNpQ0ZiTUVITGRhZkhYbUIzSVZDdGFFRzNKdWNfVG9rZW46UlNmNGJxOXNrb08zQUZ4c1oyNmMyZW5SblplXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjY2OGE1NmZjNzE3MTMyNzc3NWYwMDFmNzQzMWVjNzlfcEIwSTNFaEFtSElJNEZvYlZyV2ZmS05wcDJ6NWhXcjhfVG9rZW46TUhiSmJnbFVJbzZYSzJ4MzhaY2NTTmZJbnZiXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h5 id='退出容器'><span>退出容器</span></h5><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.5px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">exit</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=Mjk0NjVkNWQyYmQxMTJlZjM1OTA5ODRkYzg4ZjUwY2VfeGZuM1dHR2h5dEpyN053NlVsb0l1MFFOVkJycklRN3ZfVG9rZW46V0ZCT2J5YkZpb1dZbzN4bVlHZWNhbEtSbnpnXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h5 id='小结'><span>小结</span></h5><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=NzMzZGM2ZjMzZGYzYjk0ZjAwZGU4Y2UyODRlMTA3MGNfSEl0Y0FNT09VQ2ZXdlJlUVcwS0l2U2xWUkFQZ1JHeldfVG9rZW46QTdidGJtZlFsb0plNUt4T3Z2WGNWZzQ2bmhoXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTRhNmVlYjM4ODM4ZGFjOTU4NDAwM2IzNjFiOTU4NWFfWThCWXRtNUNRZTF1c28ybEZiZGNVYlNZdm1aQk9hNzJfVG9rZW46UlpNQ2JlcUkwbzZra3F4eWJSMmNPUU5xbnpjXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=N2FjOWEwOGVmNzg1MGM3OGJmMmIwMTAyYTNhMjJiOTRfbUhFSUdQZkttc1NsRWJpSnFQZDJHcVVsNVZwNmhSczdfVG9rZW46TDBwSGJMdHVkb3VXdk54Z0k3OWNkU01qbmZmXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h3 id='五docker镜像讲解'><span>五、</span><strong><span>Docker镜像讲解</span></strong></h3><h4 id='镜像是什么'><strong><span>镜像是什么</span></strong></h4><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MmQ2YTA0YTBiZTI5YTk3MzM3NDU2ZjRkNDcyN2Q0NGJfblM1d0xXNlpPdFc2TmNGdm5UZEpUanM3cDVOOWtMTDRfVG9rZW46S2w3Y2JubDlzb1FYMWZ4WmVSd2N3VDd0bnVnXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h4 id='docker镜像加载原理'><strong><span>Docker镜像加载原理</span></strong></h4><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=ODg5ZmQ2ZjUwNjBlOGIzYmVhYTc0ZTA4NjJlZTY4ODNfSkFDOFNwYnEyTThwVmNpTlladGpCRFpNaG01ZTN6UXNfVG9rZW46VmlHWGJER3FmbzFRUzN4RWVYbGNJZzhRbmJiXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=YzQ2MDA3NDMxYTE4N2RiZGFmMTkwMWJmYTE0ODExYjBfeXhKSk11SThQbU56U0U0Y1F0MEVldlVSRGZ5TDBQdW1fVG9rZW46WjRaRmIwYXV6b2M3WFl4cnEzUWNLTzMzbmtmXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=NmYzZDAxMTg5ZjhkMmI3ZGM4NmE2MDQ4NmFjNjY5OTRfcE5QU0VybEZNOVQ3SDNiQWNHV2NaOTJQNFNQQ0QzdFNfVG9rZW46VUZDcWJpdDB6b0hqbGp4ck51aGNiSHpxbjhpXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MmUzZmZiMDg5ODVmMjEwZjgwOGI5NTNkOTM3NzVjZTNfT1JKZW5Qa0ZoalROZ0VEREdDaUJ2RFYxNXV2NVBzQXZfVG9rZW46T0F4WGJ5RHp1b2lTWG14ckJnN2NvQWp2bjlnXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=YWQzZmM0M2VjZDUzYWEzNDMzMWJhNjFkNTdhMDg4NjhfaGtwQ0RxNGdtT2x5OXQ5RnpDU0FFbmV4N2F5UXJnYkdfVG9rZW46U3p4cmJxRlFab0pmc3J4UDZXRmNpeUxYbnVlXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><span>                                 </span><strong><span>黑屏-----通过加载------开机     开机完就可以卸载掉，所以bootfs这一部分是公用的</span></strong></p><p><span>                                 </span><strong><span>开机之后，就是rootfs系统，就是Linux，所以启动之后，容器就是一个小的虚拟机容器</span></strong></p><h4 id='分层理解'><strong><span>分层理解</span></strong></h4><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=YTE2NmU1Y2IyN2IwOTM3MGY4NjEwNmFhZmU4OGQ4Y2RfWGZZTDJoWWRjR09HRXN5WXdlTVhuSkhFU2FvdGpTaXVfVG9rZW46UUN5RWJpTUt2bzZTVDh4UExwVWNTdmpIblpjXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjRjNjVhZjNkZjlmZGI4MGEzMTc3MmU5NzJlNWJmYTNfcGN2a3RwR0VJcEtFSkRCZURQRGRjV0VwdlBaVVpQRnRfVG9rZW46U1E0b2JDejl3b3VIZkt4RVp1SGNxaGE5blVlXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=NmVkNjhmYWQ5NWJiNGNlNDg2MGVhMzE3MjliN2RiMTdfdXJ5YUZNQlBZNjV1eXRmYUZJV1dJNmhaOWdyMUk1NnRfVG9rZW46S0w2V2JCN0Rib1NhUGx4R0V2Z2N6SW1BbkhoXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MDMxYTU0NjkyNmMyMGI4MGE0N2NkZDAyZGY1NGYwMDhfR0JMTDJwOTdndHdCZkhvbkFTVlFMZ0duaDJxWmFtdXdfVG9rZW46S2JPMWJ4cThFb1dpeE54RzJ1cmNnakVJbjJnXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=NjQ3ZTQ3MTBlMDM4MzZjNTliZGJkMzg3NjFlZmQwNWVfaFJZNmxxaXI4eWFKTXR4NTZnWkR2d1JCd3NVcW9EcDdfVG9rZW46R1NIUWIzSm50b3p2S2F4ZktlTGNZajJObjdlXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=NTJkYTYxZGU2YmRlMWRkODJmNGY2YTIyZTk2YTQwMGZfM1dxdlU2TkpGb21NZVpDR1RzZXd6b2dBcXhCN3kwVU1fVG9rZW46U3lsYWJCQnRVb3NNeFR4UHdyaGNJVGxublRlXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h3 id='六容器数据卷'><span>六、</span><strong><span>容器数据卷</span></strong></h3><h4 id='什么是容器数据卷'><strong><span>什么是容器数据卷</span></strong></h4><p><span>数据卷的挂载：</span></p><p><span>通过创建 volume虚拟目录，作为本地目录与容器目录的桥梁。</span></p><p><span> -v 数据卷名:容器内目录</span></p><p><span>会与容器内目录相关联，同时在本地创建 docker/volumes/数据卷名/_data，使得虚拟目录与本地目录相关联。由此，本地目录就与容器目录也进行了间接关联。</span></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MTE2ZjU3MjJjZTRiMzI5OTM3YWZkYzFjNTdmYzkwMTNfSkliWUo0blFLaE9QRVZ0eGlIVFlhRXdFSVVuNWpwUEZfVG9rZW46SGJvb2JVWnZtb1RSSm54Q3o2emNZdktubjJmXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MzJmZDBmYTY2MzBkYmExNTQwODg5NjU4Y2Q3ODYwYzVfeFNKaGdSR2RCZkU2bHZ4NGk5aXdXUWtEd3JWZFVIT29fVG9rZW46Q1Z1emIyZFdEb2FKb2d4MGJFb2NuNllLbnlmXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDgwMzBiZWVlN2FlMjMzYjc4YWMwZmRhMzgyNzE3MGVfSmF1V2F2c3ZjNkZXaE9TRFBvcVJSY1ppMERQWVVuRmdfVG9rZW46QWpMNWJEcmZ5b3RLMHl4eVhEZmMzR3owblpnXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=ODZhZjUwNzNlYTRiMmVlN2Y0MzRhYWJmOTk1MmIzMjBfU3Rzd2pvQm5mT0ZPNzRwRHNHV1VHVDdiVzQ3djZkMFlfVG9rZW46SDRzeGJjaWNXb0o5RWZ4WU1kOGNMVEtKbnRjXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><strong><span>总结：是为了容器的持久化和同步操作，容器间也是可以数据共享的</span></strong></p><h4 id='使用本地目录挂载'><span>使用本地目录挂载</span></h4><p><span>这里的挂载，就是monitor_docker_run.sh脚本里的-v操作</span></p><p><span>把我们本机的代码挂载到容器中</span></p><p><span>这样我们本地修改代码，容器中代码也会修改</span></p><p><span>在容器中修改代码，本地代码也会修改</span></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=NmNiYjE1ZmUyNWJjMzVjZWVmZDBiMDEwNjhlMzI0OWRfUlA3SmJMZzRPWnA1NzVFSlR0b091RHhZTGROOWtXWW5fVG9rZW46S3BDY2J3aU1jb0MyT0d4aFptOGN6azRiblZlXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><strong><span>这里我们是把本地的代码目录挂载到容器中的/work目录</span></strong></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=OWYzNTc2MmQ4ZGQ3YjJiNzFkMWE4Y2MyMmZmZjRiZDRfcjRtUmR0enFlcWV6b0x4QmRZdDdRdFNIa2NMYmVDakdfVG9rZW46QXI0UGJreURCb1FnaWR4V0UzNmNJNjE1blViXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><span>利用数据卷实现宿主机与容器的双向映射，即在宿主机中的操作会映射到容器中，在容器中的操作也会映射在宿主机中。</span></p><h3 id='七初始dockerfile'><span>七、</span><strong><span>初始Dockerfile</span></strong></h3><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MmIwMGQwMzBhODU1YjI0ZWE4OGU2YWEwMDg5ZDk1N2JfakdMTVBwaU1Camo3dGhlN0NnYzZzSHR6MTVoV1p5RkZfVG9rZW46Qmw2SWJFcVFHbzBPTzR4UEpuc2NERlRkbnJjXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=YTc0YWZjNjI4YjM4YjE5MDJlNjg2YjJlNzcxNDhlYjVfQXZwTnppVGZsVE1YOUpMZVpIUENnZU1JWm0wbTJkekZfVG9rZW46QjBTa2JyUWdHb21Ic3Z4aDRNd2NyNTN0bmNjXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h3 id='八dockerfile'><span>八、</span><strong><span>DockerFile</span></strong></h3><h4 id='dockerfile介绍'><strong><span>DockerFile介绍</span></strong></h4><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGY2ZGQyMmU5Y2I2MzkyYTJlMDNlZTNlZTNmNDA4MzRfcnlVOThlbmZMdnhFU2JCNEtkTDFDSlhxS3ZtVXVuWGZfVG9rZW46VkNCUWJCc2U4b1kwSzN4SGxIRWM4UWdJbkhmXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MjBiMDZlMGUyMjkyYTBmZGMwNjBkMTZhNTZhMWEzY2RfWlNwQjQ3R3pJcmJqRW9vTUlUTm1xa1A0cDlIWXVLUnNfVG9rZW46Q0g1cWJHWFdDb1pJaUt4ZVo5cGNuTUlFbmtKXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h4 id='dockerfile构建过程'><strong><span>DockerFile构建过程</span></strong></h4><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=MDA4NWQwMzJjZGY1ZTc3ZDA0ZTFiNmJlZGQ1NDNjZGVfT2FQblJoVUJOaUNHMjBZYVJlNXdNd2hIV3gyZE9ZR3BfVG9rZW46V0FPSGJGRTdwb0s2NFZ4UGJBTWNFQjhwbjhmXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=YWRkMWNkZDNhM2NlMzY3OWM2YjIzNDcyY2ExNWJkYThfN0dlU25kWVFPWHg3RkNQMW8xMnhyV2ozTDVBY2pBbU1fVG9rZW46SnpJZGJ3TFVvb3FFelJ4bklFYWNnaHlQbnhmXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h4 id='dockerfile的指令'><strong><span>DockerFile的指令</span></strong></h4><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDg4YTc2OWYxNjUyNDRjZmQyM2E2NGUxNDY2OGFjNGFfS3FUMUU0N0hCNkxtd3F2ZTlLS2RQdVpIRkFzN1JFb1RfVG9rZW46VVpBaGJVZ2lsb2EyYWt4VFpydmNuaFFEblJmXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTJlNTllZDdjZTZhOGE2M2Y0NWJiN2MyM2NmMjhhYTFfdEJTaXp6VVdtazRDNWw2TlhrNThaaFhPZjFmbkMxeXVfVG9rZW46VHFuQ2JSbzlnb1FFNFZ4TTJEOGNrb1prbndjXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><h3 id='九依赖库安装'><span>九、</span><strong><span>依赖库安装</span></strong></h3><h4 id='usrlocal目录'><strong><span>/usr/local目录</span></strong></h4><p><span>/usr/local 目录是用来安装第三方软件的目录</span></p><p><span>所谓第三方软件其实就是用户自己安装的软件，区别于安装系统时自带的软件。</span></p><ul><li><code>/usr</code><span>- 由操作系统安装（或提供）的所有系统范围的只读文件</span></li><li><code>/usr/local</code><span>- 由本地管理员（通常是自己）安装的系统范围的只读文件。</span><em><span>这就是为什么大多数目录名称都</span><strong><code>/usr</code></strong><span>在此处重复的原因。</span></em></li></ul><h4 id='abseil'><strong><span>abseil</span></strong></h4><p><span>Abseil 是 C++ 代码的开源集合（符合 C++14），旨在增强 C++ 标准库。</span></p><h5 id='安装介绍-1'><strong><span>安装介绍</span></strong></h5><p><a href='https://github.com/abseil/abseil-cpp/blob/master/CMake/README.md' target='_blank' class='url'>https://github.com/abseil/abseil-cpp/blob/master/CMake/README.md</a></p><h5 id='install-1'><strong><span>install</span></strong></h5><ul><li><span>安装包下载</span></li></ul><p><a href='https://github.com/abseil/abseil-cpp/archive/refs/tags/20200225.2.tar.gz' target='_blank' class='url'>https://github.com/abseil/abseil-cpp/archive/refs/tags/20200225.2.tar.gz</a></p><h4 id='cmake'><strong><span>cmake</span></strong></h4><p><span>CMake 是一个跨平台、开源构建系统生成器</span></p><h5 id='官方文档'><strong><span>官方文档</span></strong></h5><p><a href='https://cmake.org/cmake/help/latest/index.html' target='_blank' class='url'>https://cmake.org/cmake/help/latest/index.html</a></p><h5 id='install-2'><strong><span>install</span></strong></h5><p><a href='https://github.com/Kitware/CMake/archive/refs/tags/v3.26.4.tar.gz' target='_blank' class='url'>https://github.com/Kitware/CMake/archive/refs/tags/v3.26.4.tar.gz</a></p><h4 id='protobuf'><strong><span>protobuf</span></strong></h4><p><span>Protocol Buffers（又名 protobuf）是 Google 的语言中立、平台中立、可扩展的机制，用于序列化结构化数据</span></p><h5 id='安装介绍-2'><strong><span>安装介绍</span></strong></h5><p><span>需要先在计算机上安装</span><a href='http://www.cmake.org/'><span>CMake</span></a><span>、 </span><a href='http://git-scm.com/'><span>Git</span></a><span>和Abseil</span></p><p><a href='https://github.com/protocolbuffers/protobuf/blob/main/cmake/README.md' target='_blank' class='url'>https://github.com/protocolbuffers/protobuf/blob/main/cmake/README.md</a></p><h5 id='install-3'><strong><span>install</span></strong></h5><p><a href='https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/protobuf-cpp-3.14.0.tar.gz' target='_blank' class='url'>https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/protobuf-cpp-3.14.0.tar.gz</a></p><h4 id='grpc'><strong><span>grpc</span></strong></h4><p><span>gRPC 是一种现代、开源、高性能的远程过程调用 (RPC) 框架，可以在任何地方运行。gRPC 使客户端和服务器应用程序能够透明地通信，并简化连接系统的构建。</span></p><h5 id='安装介绍-3'><strong><span>安装介绍</span></strong></h5><p><a href='https://github.com/grpc/grpc/blob/master/BUILDING.md#build-from-source' target='_blank' class='url'>https://github.com/grpc/grpc/blob/master/BUILDING.md#build-from-source</a></p><h5 id='install-4'><strong><span>install</span></strong></h5><p><a href='https://github.com/grpc/grpc/archive/refs/tags/v1.30.0.tar.gz' target='_blank' class='url'>https://github.com/grpc/grpc/archive/refs/tags/v1.30.0.tar.gz</a></p><h4 id='qt'><strong><span>qt</span></strong></h4><h5 id='install-5'><strong><span>install</span></strong></h5><p><a href='https://download.qt.io/archive/qt/5.12/5.12.9/qt-opensource-linux-x64-5.12.9.run' target='_blank' class='url'>https://download.qt.io/archive/qt/5.12/5.12.9/qt-opensource-linux-x64-5.12.9.run</a></p><h5 id='cuteci下载'><strong><span>cuteci下载</span></strong></h5><h5 id='简介'><strong><span>简介</span></strong></h5><p><a href='https://pypi.org/project/cuteci/' target='_blank' class='url'>https://pypi.org/project/cuteci/</a></p><p><span>CuteCI is a simple tool allowing you to install Qt framework with desired packages in headless mode.</span></p><h4 id='ldconfig'><strong><span>ldconfig</span></strong></h4><p><span>是一个动态链接库管理命令，其目的为了让动态链接库为系统所共享。</span></p><p><a href='https://www.cnblogs.com/schips/p/10183111.html' target='_blank' class='url'>https://www.cnblogs.com/schips/p/10183111.html</a></p><h3 id='十docker--file编写'><span>十、</span><strong><span>docker  file编写</span></strong></h3><h4 id='debianfrontend'><strong><span>DEBIAN_FRONTEND</span></strong></h4><p><span>告知操作系统应该从哪儿获得用户输入。如果设置为&quot;noninteractive&quot;，你就可以直接运行命令，而无需向用户请求输入（所有操作都是非交互式的）。这在运行apt-get命令的时候格外有用，因为它会不停的提示用户进行到了哪步并且需要不断确认。非交互模式会选择默认的选项并以最快的速度完成构建。请确保只在Dockerfile中调用的RUN命令中设置了该选项，而不是使用ENV命令进行全局的设置。因为ENV命令在整个容器运行过程中都会生效，所以当你通过BASH和容器进行交互时，如果进行了全局设置那就会出问题。</span></p><h5 id='面试常问shellawkgrepsed'><span>面试常问shell：awk，grep，sed</span></h5><h3 id='十一脚本scripts'><span>十一、</span><strong><span>脚本scripts</span></strong></h3><h4 id='xhost'><strong><span>xhost</span></strong></h4><p><span>xhost命令是X服务器的访问控制工具，用来控制哪些X客户端能够在X服务器上显示。</span></p><p><span>xhost [ + | - ] [ Name ]</span></p><p><span>&quot;+&quot;表示增加，&quot;-&quot;表示去除</span></p><p><span>当你从hostA登陆到hostB上运行hostB上的应用程序时，做为应用程序来说，hostA是client，但是对图形来说，是在hostA上显示的，需要使用hostA的Xserver，所以hostA是server。因此在登陆到hostB前，需要在hostA上运行xhost +来使其它用户能够访问hostA的Xserver。</span></p><h4 id='示列'><strong><span>示列</span></strong></h4><p><span>xhost + 是使所有用户都能访问Xserver.</span></p><p><span>xhost + local:root 只有本地的root用户可以访问Xserver</span></p><h4 id='display'><strong><span>DISPLAY</span></strong></h4><p><span>在Linux/Unix类操作系统上, DISPLAY用来设置将图形显示到何处. 直接登陆图形界面或者登陆命令行界面后使用startx启动图形, DISPLAY环境变量将自动设置为:0:0, 此时可以打开终端, 输出图形程序的名称(比如xclock)来启动程序, 图形将显示在本地窗口上, 在终端上输入printenv查看当前环境变量, 输出结果中有如下内容:</span></p><p><span>DISPLAY=:0.0</span></p><p><span>使用xdpyinfo可以查看到当前显示的更详细的信息.</span></p><p><span>DISPLAY 环境变量格式如下host:NumA.NumB, host指Xserver所在的主机主机名或者ip地址, 图形将显示在这一机器上, 可以是启动了图形界面的Linux/Unix机器, 也可以是安装了Exceed, X-Deep/32等Windows平台运行的Xserver的Windows机器. 如果Host为空, 则表示Xserver运行于本机, 并且图形程序(Xclient)使用unix socket方式连接到Xserver, 而不是TCP方式. 使用TCP方式连接时, NumA为连接的端口减去6000的值, 如果NumA为0, 则表示连接到6000端口; 使用unix socket方式连接时则表示连接的unix socket的路径, 如果为0, 则表示连接到/tmp/.X11-unix/X0 . NumB则几乎总是0.</span></p><h3 id='十二docker的等价比喻'><span>十二、</span><strong><span>docker的等价比喻</span></strong></h3><p><span>dockerfile 文件-------&gt;等价于，我们打算如何盖房子，先画好图纸</span></p><p><span>docker build -f base.dockerfile  .---&gt;等价于盖房子过程</span></p><p><span>上面指令执行完，生成docker 镜像----&gt;等价于房子盖好了，这个房子就在那个放，你没docker run (没钱)，你就使用不了</span></p><p><span>docker run -------&gt;启动容器-----&gt;等价于我们拿到房子钥匙了</span></p><p><span>docker exec -----&gt;进入容器，进行操作--------&gt;等价于我们进入房子里面，可以任意使用房间内的所有东西</span></p><h4 id='others'><span>Others:</span></h4><p><span>容器网络互连的问题：</span></p><p><span>docker在安装的时候，会默认创建一个docker0的“网卡”，在容器创建的过程中会为容器默认分配一个ip地址，因为在同一个网关下，所以通过这个ip地址 容器A能够 ping 容器B。默认情况下，所有容器都是以bridge方式连接到Docker的一个虚拟网桥上。</span></p><p><span>那么为什么还需要自定义网络？或者说为什么又容器网络互连的问题？</span></p><p><span>因为分配的ip地址是非固定的，容器的每次启动分配的ip地址都不一定相同，那么如果一个容器运行的过程中重启了，ip地址就会发生变化。所以可以通过自定义网络，使用docker network create [OPTIONS] NETWORK来创建网络，在容器创建的时候 --network 指定加入的网络，或者在容器运行的时候使用 docker network connect [OPTIONS] NETWORK CONTAINER与网络进行连接（加入）。</span></p><p><strong><span>加入自定义网络的容器，才可以通过容器名互相访问，通过容器名访问更加方便。</span></strong></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDc0MzhlMWFjOWJmNGY4OGM0NDI4YTk2YzBkN2U2NGFfM05RcjJGaVVnMXNsVDVlb3I4VUw5Sk90Y0wza0Z0cmVfVG9rZW46UUFqOWJLVWpwb2RRZ1R4UmFnamNNVWh4bnJoXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p><p><img src="https://r3f3348v36.feishu.cn/space/api/box/stream/download/asynccode/?code=NGI2YWRiYzUzOWYwZTE4MzM3ZDcyOTk4NmJhZDY0YzBfY1JHZFp1U2VWMkI3RGd6RU5VWFI2dk9GS3dVUFFUWnBfVG9rZW46RU9wQ2I2Vkxsb2dTZWJ4Y01VMmNYSHl4bmZxXzE3MDk1MjM2NDA6MTcwOTUyNzI0MF9WNA" referrerpolicy="no-referrer" alt="img"></p></div></div>
+</body>
+</html>
